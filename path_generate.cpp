@@ -30,15 +30,14 @@ int main (int argc, char **argv)
 
   int seed = 0;
 
-  
   std::vector<city> Cities(N);
   initial_conditions (N, Cities);
-  
+
   // std::mt19937 gen (seed);
   //std::uniform_real_distribution<double> d(-1.0, 1.0);
 
   for(int ii=0; ii<N; ++ii){
-    std::cout<<ii<<Cities[ii].r[0]<<"  "<<Cities[ii].r[1]<<"\n";
+    std::cout<<ii<<"  "<<Cities[ii].r[0]<<"  "<<Cities[ii].r[1]<<"\n";
   }
 
   
@@ -55,9 +54,13 @@ void initial_conditions(int N, std::vector<city> & cities)
    /
   x  
   */
+  int seed=0;
+  std::mt19937 gen (seed);
+  std::uniform_real_distribution<double> d(-1.0, 1.0);
+
   for (int ii=0; ii<N; ++ii){
-    cities[ii].r[0] = 1.5;
-    cities[ii].r[1] = 2.0;
-    cities[ii].visited=false;
+    cities[ii].r[0] = d(gen);
+    cities[ii].r[1] = d(gen);
+    cities[ii].visited = false;
   }
 }
